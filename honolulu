@@ -1,0 +1,15 @@
+Understanding the Url:
+
+/Flights-Search?
+trip=roundtrip
+&leg1=
+	from:Sydney,%20NSW,%20Australia%20%28SYD-All%20Airports%29,
+	to:%20Oahu,%20HI,%20United%20States%20%28HNL-Honolulu%20Intl.%29,
+	departure:08/02/2014TANYT
+&leg2=
+	from:%20Oahu,%20HI,%20United%20States%20%28HNL-Honolulu%20Intl.%29,
+	to:Sydney,%20NSW,%20Australia%20%28SYD-All%20Airports%29,
+	departure:25/02/2014TANYT
+&passengers=children:0,adults:1,seniors:0,infantinlap:Y
+&options=cabinclass:coach,nopenalty:N,sortby:price
+&mode=search"
