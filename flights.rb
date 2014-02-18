@@ -1,7 +1,6 @@
 require 'faraday'
 
 expedia = Faraday.new(:url => "http://www.expedia.com.au")
-expedia.get('/blah')
 
 home = 'Sydney, N.S.W. (SYD-All Airports)'
 destination = 'HI, United States (HNL-Honolulu Intl.)'
@@ -52,7 +51,10 @@ cheapest = nil
 html = expedia.get(url).body
 
 html.scan(/totalCost="([0-9.]+)"/).each do |flight|
-  price = flight.first.to_f
-  cheapest = price if cheapest.nil? or price < cheapest
+  price = flight[0].to_f
+  # What does this mean, to_f?
+  if price < 100000
+    cheapest = price if cheapest.nil? or price < cheapest
+  end
 end
 puts "Cheapest flight from Expedia is: $#{cheapest}"
