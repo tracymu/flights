@@ -3,7 +3,7 @@ require './lib/ohm.rb'
 
 class Destination < Ohm::Model
   attribute :city
-  attribute :country
+  # attribute :country
   set :deals, :Deal
   index :city
 end
@@ -18,13 +18,13 @@ class Airline < Ohm::Model
   index :name
 end
 
-airline = Airline.find_or_create(:name => "Qantas")
+# airline = Airline.find_or_create(:name => "Qantas")
 
-loc = Destination.find_or_create(:city => "Paris")
-loc.update(:country => "France") if loc.country.nil?
+# loc = Destination.find_or_create(:city => "Paris")
+# # loc.update(:country => "France") if loc.country.nil?
 
-deal = loc.deals.find_or_create(:airline => airline)
-deal.price = 950
-deal.save
+# deal = loc.deals.find_or_create(:airline => airline)
+# deal.price = 950
+# deal.save
 
-puts "Price of flight with #{airline.name} to #{loc.city} is $#{deal.price}"
+# puts "Price of flight with #{airline.name} to #{loc.city} is $#{deal.price}"

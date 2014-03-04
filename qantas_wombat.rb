@@ -1,4 +1,5 @@
 require 'wombat'
+require './redis.rb'
 
 flights = Wombat.crawl do
   base_url "http://www.qantas.com.au"
@@ -11,9 +12,15 @@ flights = Wombat.crawl do
   end
 end
 
-print flights["results"]
+# print flights["results"]
+
+qantas = Airline.find_or_create(:name => "Qantas")
 
 flights["results"].each do |result|
-  p "#{result['city']} is $#{result['price']}"
+  city = result["city"].match(/[^(]*/).to_s.strip
+  destination = Destination.find_or_create(:city => city)
+  deal = destination.deals.find_or_create(:airline => qantas)
+  deal.price = result["price"].to_i
+  deal.save
+  p "#{city} is $#{result['price']}"
 end
-
